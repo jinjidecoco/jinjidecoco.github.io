@@ -3,7 +3,33 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://jinjidecoco.github.io/post/%E8%80%81%E7%94%9F%E5%B8%B8%E8%B0%88%E7%9A%84%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D/</loc>
+    <lastmod>2018-05-13T15:48:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jinjidecoco.github.io/post/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2/</loc>
+    <lastmod>2018-04-13T15:48:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jinjidecoco.github.io/about/</loc>
+    <lastmod>2018-04-12T17:31:55+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jinjidecoco.github.io/post/2018/</loc>
+    <lastmod>2018-04-10T23:31:55+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://jinjidecoco.github.io/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jinjidecoco.github.io/post/</loc>
+    <lastmod>2018-05-13T15:48:34+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -14,6 +40,7 @@
   
   <url>
     <loc>https://jinjidecoco.github.io/</loc>
+    <lastmod>2018-05-13T15:48:34+08:00</lastmod>
     <priority>0</priority>
   </url>
   
