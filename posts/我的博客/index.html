@@ -14,7 +14,7 @@
   
   
   <meta name="twitter:title" content="利用Hugo搭建个人博客"/>
-  <meta name="twitter:description" content="安装 brew,用 brew 安装 Hugo, brew install hugo 关于 Hugo 是一种静态网站生成器，可用于搭建个人博客、小型公司网站，是一种 CMS 系统。mac 版，可直接在终端安装 brew install Hugo 然"/>
+  <meta name="twitter:description" content="安装 brew,用 brew 安装 Hugo, brew install hugo 关于 Hugo 是一种静态网站生成器，可用于搭建个人博客、小型公司网站，是一种 CMS 系统。mac 版，可直接在终端安装 brew install Hugo 使"/>
   
   
   
@@ -70,7 +70,7 @@
                     </h1>
                     <h2 class="headline">
                     Apr 13, 2018 15:48
-                    · 588 words
+                    · 619 words
                     · 2 minute read
                       <span class="tags">
                       
@@ -98,7 +98,13 @@
 
 <h2 id="安装-brew-用-brew-安装-hugo-brew-install-hugo">安装 brew,用 brew 安装 Hugo, brew install hugo</h2>
 
-<p>关于 Hugo 是一种静态网站生成器，可用于搭建个人博客、小型公司网站，是一种 CMS 系统。mac 版，可直接在终端安装 <code>brew install Hugo</code> 然后打开所在文件夹，可看到以下目录文件</p>
+<p>关于 Hugo 是一种静态网站生成器，可用于搭建个人博客、小型公司网站，是一种 CMS 系统。mac 版，可直接在终端安装 <code>brew install Hugo</code>
+使用Hugo快速生成站点，例如在该路径 /hugo/blog下：</p>
+
+<pre><code>hugo new site /hugo/blog
+</code></pre>
+
+<p>然后 cd /hugo/blog ，可看到以下目录文件</p>
 
 <blockquote>
 <p>▸ archetypes/</p>
@@ -132,7 +138,12 @@
 git clone https://github.com/nodejh/hugo-theme-cactus-plus.git
 </code></pre>
 
-<p>接着配置config.toml ,去对应主题的官网参考config.toml配置。配置好以后，你可以输入以下命令 hugo server 启动本地服务,进行项目<a href="http://localhost:1313">预览</a>。本地测试没有问题,就可以准备发布到github了。 执行以下命令：</p>
+<p>接着配置config.toml ,去对应主题的官网参考config.toml配置。配置好以后，你可以输入以下命令:</p>
+
+<pre><code>hugo server
+</code></pre>
+
+<p>启动本地服务,进行项目<a href="http://localhost:1313">预览</a>。本地测试没有问题,就可以准备发布到github了。 执行以下命令：</p>
 
 <p><code>hugo -t hugo-theme-cactus-plus</code></p>
 
