@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		 
+			
+  
+    <meta name="twitter:card" content="summary"/>
+    
+      <meta name="twitter:image" content="https://jinjidecoco.github.io/images/avatar.png" />
+    
+  
+  
+  <meta name="twitter:title" content="通俗易懂的Promise"/>
+  <meta name="twitter:description" content="前言 Promise的出现，对我们来说是一个福音，‘回调地狱’的痛苦我们不用再经受了。下面简单介绍下Promise的概念和使用方法。 Promi"/>
+  
+  
+  
+  
+    <meta name="twitter:creator" content="@"/>
+  
+
+
+
+		
+		
+		<meta name="description" content="你好，世界">
+		<meta name="generator" content="Hugo 0.38.2" />
+		<title>通俗易懂的Promise &middot; 药小飒</title>
+		<link rel="shortcut icon" href="https://jinjidecoco.github.io/images/favicon.ico">
+		<link rel="stylesheet" href="https://jinjidecoco.github.io/css/style.css">
+		<link rel="stylesheet" href="https://jinjidecoco.github.io/css/highlight.css">
+
+		
+		<link rel="stylesheet" href="https://jinjidecoco.github.io/css/font-awesome.min.css">
+		
+
+		
+		<link href="https://jinjidecoco.github.io/index.xml" rel="alternate" type="application/rss+xml" title="药小飒" />
+		
+
+		
+	</head>
+
+    <body>
+       <nav class="main-nav">
+	
+	
+		<a href='https://jinjidecoco.github.io/'> <span class="arrow">←</span>Home</a>
+	
+	<a href='https://jinjidecoco.github.io/posts'>Archive</a>
+	<a href='https://jinjidecoco.github.io/tags'>Tags</a>
+	<a href='https://jinjidecoco.github.io/about'>About</a>
+
+	
+
+	
+	<a class="cta" href="https://jinjidecoco.github.io/index.xml">Subscribe</a>
+	
+</nav>
+
+
+        <section id="wrapper" class="post">
+            <article>
+                <header>
+                    <h1>
+                        通俗易懂的Promise
+                    </h1>
+                    <h2 class="headline">
+                    May 19, 2018 20:46
+                    · 1315 words
+                    · 3 minute read
+                      <span class="tags">
+                      
+                      </span>
+                    </h2>
+                </header>
+                
+                  
+                    <div id="toc">
+                      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#前言">前言</a></li>
+<li><a href="#promise是什么">Promise是什么？</a></li>
+<li><a href="#基本用法">基本用法</a></li>
+<li><a href="#reject和catch用法">reject和catch用法</a></li>
+<li><a href="#总结">总结</a></li>
+</ul></li>
+</ul>
+</nav>
+                    </div>
+                  
+                
+                <section id="post-body">
+                    
+
+<h2 id="前言">前言</h2>
+
+<p>Promise的出现，对我们来说是一个福音，‘回调地狱’的痛苦我们不用再经受了。下面简单介绍下Promise的概念和使用方法。</p>
+
+<h2 id="promise是什么">Promise是什么？</h2>
+
+<p><img src="/images/promises.jpg" alt="promises" />
+打印出来的Promise是一个构造函数，身上有all、 reject、resolve几个常用方法。原型上有catch、then等方法。Promise有三种状态:<strong>pending(进行中)、fulfilled(已成功)和rejected(已失败)</strong>。</p>
+
+<h2 id="基本用法">基本用法</h2>
+
+<p>下面详细介绍Promise的用法。
+我们先构造一个实例看看：</p>
+
+<pre><code class="language-javascript">const p = new Promise(function(resolve, reject) {
+    setTimeout(function() {
+        console.log('完成')
+        resolve('输出数据')
+    }, 3000)
+})
+</code></pre>
+
+<p>Promise构造函数接受一个函数作为参数，并且传入两个参数<strong>resolve</strong>和 <strong>reject</strong>。
+resolve 的作用是使Promise对象的状态由“未完成”变为“成功”(即从pending&mdash;&gt;resolve) 。上面的代码在3秒后会输出完成。并且执行resolve方法。需要注意的是我new的这个Promise对象并没有调用就执行了。我们通常将用函数包裹下，来确定何时调用。</p>
+
+<pre><code>function Async() {
+    const p = new Promise(function(resolve, reject) {
+        setTimeout(function() {
+            console.log('完成')
+            resolve('输出数据')
+        }, 3000)
+    })
+    return p
+}
+Async()
+</code></pre>
+
+<p>这个函数最后会返回一个 Promise对象，Promise对象上还有我们熟悉的then和catch方法。我们接着看下面用法：</p>
+
+<pre><code class="language-javascript">Async().then(function(data) {
+    console.log(data);
+})
+</code></pre>
+
+<p>3秒后会输出“完成”，接着输出 “输出数据”。
+到此我们会发觉，then里的函数和我们平时使用的回调函数差不多。我们使用之前的代码也能实现</p>
+
+<pre><code class="language-javascript">function Async(cb) {
+
+    setTimeout(function() {
+        console.log('完成')
+        cb('输出数据')
+    }, 3000)
+}
+Async(function(data) {
+    console.log(data);
+})
+</code></pre>
+
+<p>但是仔细想想我们之前用这种多层回调带来的痛苦，而Promise不会出现这个问题，我们可以继续通过then来进行继续回调。</p>
+
+<pre><code class="language-javascript">function Async1() {
+    const p = new Promise(function(resolve, reject) {
+        setTimeout(function() {
+            console.log('异步1完成')
+            resolve('输出数据1')
+        }, 3000)
+    })
+    return p
+}
+
+function Async2() {
+    const p = new Promise(function(resolve, reject) {
+        setTimeout(function() {
+            console.log('异步2完成')
+            resolve('输出数据2')
+        }, 3000)
+    })
+    return p
+}
+
+function Async3() {
+    const p = new Promise(function(resolve, reject) {
+        setTimeout(function() {
+            console.log('异步3完成')
+            resolve('输出数据3')
+        }, 3000)
+    })
+    return p
+}
+
+Async1()
+    .then(function(data) {
+        console.log(data);
+        return Async2()
+    })
+    .then(function(data) {
+        console.log(data);
+        return Async3()
+    })
+    .then(function(data) {
+        console.log(data)
+    })
+</code></pre>
+
+<p><img src="/images/promise.png" alt="promise" /></p>
+
+<h2 id="reject和catch用法">reject和catch用法</h2>
+
+<p>看完了执行成功的用法，让我们接着看看执行失败情况下的reject方法</p>
+
+<pre><code class="language-javascript">function getVal() {
+    var p = new Promise(function(resolve, reject) {
+        setTimeout(function() {
+            var value = Math.ceil(Math.random()* 10)
+            if (value &gt; 2) {
+                resolve(value)
+            } else {
+                reject('数字太小了啊')
+            }
+
+        }, 3000)
+
+    })
+    return p
+}
+getVal()
+    .then(function(data) {
+        console.log('成功')
+        console.log(data);
+
+    }, function(error) {
+        console.log('失败')
+        console.log(error);
+    })
+</code></pre>
+
+<p>getVal用来获取一个数值，如果比2大，就输出成功，否则就输出“数字太小了啊”。then可以接受多个回调，一个对应resolve的回调，一个对应reject的。我们还知道的catch方法，相当于then的第二个参数，用来指定reject的回调。</p>
+
+<pre><code class="language-javascript">getVal()
+    .then(function(data) {
+        console.log('成功')
+        console.log(data);
+    })
+    .catch(function(err) {
+        console.log('失败')
+        console.log(err)
+    })
+</code></pre>
+
+<p>同时catch还有别的功能，用来捕捉异常，方法then中出现的异常不会卡死，会进到catch方法里，并把错误原因显示在err参数里。</p>
+
+<h2 id="总结">总结</h2>
+
+<p>Promise还有些像all,race等方法，我们日后再谈。</p>
+
+                </section>
+            </article>
+
+            
+                <a class="twitter" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fjinjidecoco.github.io%2fposts%2f%25E9%2580%259A%25E4%25BF%2597%25E6%2598%2593%25E6%2587%2582%25E7%259A%2584promise%2f - %e9%80%9a%e4%bf%97%e6%98%93%e6%87%82%e7%9a%84Promise "><span class="icon-twitter"> tweet</span></a>
+
+<a class="facebook" href="#" onclick="
+    window.open(
+      'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+      'facebook-share-dialog',
+      'width=626,height=436');
+    return false;"><span class="icon-facebook-rect"> Share</span>
+</a>
+
+            
+
+            
+                <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'coco'; 
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+            
+
+            
+                <ul id="post-list" class="archive readmore">
+    <h3>Read more</h3>
+
+    
+    
+    
+        <li>
+            <a href="/posts/%E4%BB%80%E4%B9%88%E6%98%AF%E8%B7%A8%E5%9F%9F/">跨域常用解决方案<aside class="dates">Mar 12 2019</aside></a>
+        </li>
+    
+        <li>
+            <a href="/posts/%E8%80%81%E7%94%9F%E5%B8%B8%E8%B0%88%E7%9A%84%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D/">数组去重<aside class="dates">May 13 2018</aside></a>
+        </li>
+    
+        <li>
+            <a href="/posts/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2/">利用Hugo搭建个人博客<aside class="dates">Apr 13 2018</aside></a>
+        </li>
+    
+        <li>
+            <a href="/posts/2018/">你好，2018<aside class="dates">Apr 10 2018</aside></a>
+        </li>
+    
+</ul>
+
+            
+
+            <footer id="footer">
+    
+        <div id="social">
+
+	
+	
+    <a class="symbol" href="https://www.facebook.com/profile.php?id=100023443418984">
+        <i class="fa fa-facebook-square"></i>
+    </a>
+    
+    <a class="symbol" href="https://github.com/jinjidecoco/jinjidecoco.github.io">
+        <i class="fa fa-github-square"></i>
+    </a>
+    
+    <a class="symbol" href="https://twitter.com/jinjidecoco">
+        <i class="fa fa-twitter-square"></i>
+    </a>
+    
+
+
+</div>
+
+    
+    <p class="small">
+    
+       © Copyright 2020 <i class="fa fa-heart" aria-hidden="true"></i> 
+    
+    </p>
+    <p class="small">
+        Powered by <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
+    </p>
+</footer>
+
+        </section>
+
+        <script src="https://jinjidecoco.github.io/js/jquery-3.3.1.min.js"></script>
+<script src="https://jinjidecoco.github.io/js/main.js"></script>
+<script src="https://jinjidecoco.github.io/js/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+  
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'your_google_analytics_id', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+
+
+<script>
+var baiduAnalytics = '药小飒的博客,前端开发,javascript ';
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?" + baiduAnalytics;
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+    </body>
+</html>

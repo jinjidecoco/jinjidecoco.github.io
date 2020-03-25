@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>药小飒</title>
+    <link>https://jinjidecoco.github.io/</link>
+    <description>Recent content on 药小飒</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 12 Mar 2019 19:48:37 +0800</lastBuildDate>
+    
+	<atom:link href="https://jinjidecoco.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>跨域常用解决方案</title>
+      <link>https://jinjidecoco.github.io/posts/%E4%BB%80%E4%B9%88%E6%98%AF%E8%B7%A8%E5%9F%9F/</link>
+      <pubDate>Tue, 12 Mar 2019 19:48:37 +0800</pubDate>
+      
+      <guid>https://jinjidecoco.github.io/posts/%E4%BB%80%E4%B9%88%E6%98%AF%E8%B7%A8%E5%9F%9F/</guid>
+      <description>什么是跨域？ 同源策略：它是一种约定，即：协议（http 与 https）+域名(www.baidu.com 与 m.taobao.com)+端口号(</description>
+    </item>
+    
+    <item>
+      <title>通俗易懂的Promise</title>
+      <link>https://jinjidecoco.github.io/posts/%E9%80%9A%E4%BF%97%E6%98%93%E6%87%82%E7%9A%84promise/</link>
+      <pubDate>Sat, 19 May 2018 20:46:34 +0800</pubDate>
+      
+      <guid>https://jinjidecoco.github.io/posts/%E9%80%9A%E4%BF%97%E6%98%93%E6%87%82%E7%9A%84promise/</guid>
+      <description>前言 Promise的出现，对我们来说是一个福音，‘回调地狱’的痛苦我们不用再经受了。下面简单介绍下Promise的概念和使用方法。 Promi</description>
+    </item>
+    
+    <item>
+      <title>数组去重</title>
+      <link>https://jinjidecoco.github.io/posts/%E8%80%81%E7%94%9F%E5%B8%B8%E8%B0%88%E7%9A%84%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D/</link>
+      <pubDate>Sun, 13 May 2018 15:48:34 +0800</pubDate>
+      
+      <guid>https://jinjidecoco.github.io/posts/%E8%80%81%E7%94%9F%E5%B8%B8%E8%B0%88%E7%9A%84%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D/</guid>
+      <description>前言 谈起数组去重，对于大家来说再熟悉不过了，今天想罗列下常用数据的去重方法，谈谈自己的拙见。 方法一 首先介绍下大家最熟悉不过的一个，使用 indexOf function unique(arr)</description>
+    </item>
+    
+    <item>
+      <title>利用Hugo搭建个人博客</title>
+      <link>https://jinjidecoco.github.io/posts/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2/</link>
+      <pubDate>Fri, 13 Apr 2018 15:48:34 +0800</pubDate>
+      
+      <guid>https://jinjidecoco.github.io/posts/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2/</guid>
+      <description>安装 brew,用 brew 安装 Hugo, brew install hugo 关于 Hugo 是一种静态网站生成器，可用于搭建个人博客、小型公司网站，是一种 CMS 系统。mac 版，可直接在终端安装 brew install Hugo 使</description>
+    </item>
+    
+    <item>
+      <title>你好，2018</title>
+      <link>https://jinjidecoco.github.io/posts/2018/</link>
+      <pubDate>Tue, 10 Apr 2018 23:31:55 +0800</pubDate>
+      
+      <guid>https://jinjidecoco.github.io/posts/2018/</guid>
+      <description>罗曼罗兰说：世界上只有一种真正的英雄主义，那就是在认清生活真相之后，依然可以热爱生活。</description>
+    </item>
+    
+  </channel>
+</rss>

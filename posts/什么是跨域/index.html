@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		 
+			
+  
+    <meta name="twitter:card" content="summary"/>
+    
+      <meta name="twitter:image" content="https://jinjidecoco.github.io/images/avatar.png" />
+    
+  
+  
+  <meta name="twitter:title" content="跨域常用解决方案"/>
+  <meta name="twitter:description" content="什么是跨域？ 同源策略：它是一种约定，即：协议（http 与 https）&#43;域名(www.baidu.com 与 m.taobao.com)&#43;端口号("/>
+  
+  
+  
+  
+    <meta name="twitter:creator" content="@"/>
+  
+
+
+
+		
+		
+		<meta name="description" content="你好，世界">
+		<meta name="generator" content="Hugo 0.38.2" />
+		<title>跨域常用解决方案 &middot; 药小飒</title>
+		<link rel="shortcut icon" href="https://jinjidecoco.github.io/images/favicon.ico">
+		<link rel="stylesheet" href="https://jinjidecoco.github.io/css/style.css">
+		<link rel="stylesheet" href="https://jinjidecoco.github.io/css/highlight.css">
+
+		
+		<link rel="stylesheet" href="https://jinjidecoco.github.io/css/font-awesome.min.css">
+		
+
+		
+		<link href="https://jinjidecoco.github.io/index.xml" rel="alternate" type="application/rss+xml" title="药小飒" />
+		
+
+		
+	</head>
+
+    <body>
+       <nav class="main-nav">
+	
+	
+		<a href='https://jinjidecoco.github.io/'> <span class="arrow">←</span>Home</a>
+	
+	<a href='https://jinjidecoco.github.io/posts'>Archive</a>
+	<a href='https://jinjidecoco.github.io/tags'>Tags</a>
+	<a href='https://jinjidecoco.github.io/about'>About</a>
+
+	
+
+	
+	<a class="cta" href="https://jinjidecoco.github.io/index.xml">Subscribe</a>
+	
+</nav>
+
+
+        <section id="wrapper" class="post">
+            <article>
+                <header>
+                    <h1>
+                        跨域常用解决方案
+                    </h1>
+                    <h2 class="headline">
+                    Mar 12, 2019 19:48
+                    · 603 words
+                    · 2 minute read
+                      <span class="tags">
+                      
+                      </span>
+                    </h2>
+                </header>
+                
+                  
+                    <div id="toc">
+                      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#什么是跨域">什么是跨域？</a>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#同源策略-它是一种约定-即-协议-http-与-https-域名-www-baidu-com-与-m-taobao-com-端口号-8080-与-8081-三者相同">同源策略：它是一种约定，即：协议（http 与 https）+域名(www.baidu.com 与 m.taobao.com)+端口号(8080 与 8081)三者相同</a></li>
+</ul></li>
+<li><a href="#限制内容有">限制内容有：</a></li>
+<li><a href="#特例-三个标签允许跨域">特例：三个标签允许跨域</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#跨域常用解决方案">跨域常用解决方案</a>
+<ul>
+<li><a href="#1-jsonp">1.jsonp</a></li>
+<li><a href="#2-cors">2.cors</a></li>
+<li><a href="#3-document-domain-iframe-跨域">3.document.domain +iframe 跨域</a></li>
+<li><a href="#4-node-中间层">4.node 中间层</a></li>
+<li><a href="#5-nginx-反向代理">5.nginx 反向代理</a></li>
+</ul></li>
+<li><a href="#总结以上只列举常用的一些跨域方案-其它方法我们后续介绍">总结以上只列举常用的一些跨域方案，其它方法我们后续介绍。</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+                    </div>
+                  
+                
+                <section id="post-body">
+                    
+
+<h3 id="什么是跨域">什么是跨域？</h3>
+
+<h6 id="同源策略-它是一种约定-即-协议-http-与-https-域名-www-baidu-com-与-m-taobao-com-端口号-8080-与-8081-三者相同">同源策略：它是一种约定，即：协议（http 与 https）+域名(www.baidu.com 与 m.taobao.com)+端口号(8080 与 8081)三者相同</h6>
+
+<p>一个域名地址组成</p>
+
+<p><img src="http://tva1.sinaimg.cn/large/00831rSTly1gd5grx4029j31740a4t9i.jpg" alt="avatar" /></p>
+
+<h5 id="限制内容有">限制内容有：</h5>
+
+<ul>
+<li>Ajax 请求发送后被浏览器拦截</li>
+<li>cookie、LocalStorge 等存储型内容</li>
+<li>DOM 节点</li>
+</ul>
+
+<h5 id="特例-三个标签允许跨域">特例：三个标签允许跨域</h5>
+
+<ul>
+<li><code>&lt;img src=''&gt;</code></li>
+<li><code>&lt;link href=''&gt;</code></li>
+<li><code>&lt;script src =''&gt;</code></li>
+</ul>
+
+<h3 id="跨域常用解决方案">跨域常用解决方案</h3>
+
+<h4 id="1-jsonp">1.jsonp</h4>
+
+<p>利用<code>&lt;script&gt;</code>标签没有跨域限制的漏洞，</p>
+
+<pre><code class="language-js">function Jsonp({ url, params, cb }) {
+  return new Promise((resolve, reject) =&gt; {
+    let script = document.createElement('script')
+    window[cb] = function(data) {
+      resolve(data)
+      document.body.removeChild('script')
+    }
+    params = { ...params, cb }
+    console.log(params) //{name:&quot;coco&quot;, cb:&quot;showName&quot;}
+    let arrs = []
+    for (let key in params) {
+      arrs.push(`${key}=${params[key]}`)
+    }
+    console.log(arrs) // [&quot;name=coco&quot;, &quot;cb=showName&quot;]
+    script.src = `${url}?${arrs.join('&amp;')}`
+    console.log(script)
+    document.body.appendChild(script)
+  })
+}
+Jsonp({
+  url: 'http://localhost:8081/name',
+  params: { name: 'coco' },
+  cb: 'showName'
+}).then(data =&gt; {
+  console.log(data)
+})
+</code></pre>
+
+<h4 id="2-cors">2.cors</h4>
+
+<p>cors 通信的关键是后端，只要后端实现了 cors,就实现了跨域</p>
+
+<p>服务端设置 Access-Control-Allow-Origin 就可以开启 CORS。 该属性表示哪些域名可以访问资源，如果设置通配符则表示所有网站都可以访问资源。</p>
+
+<pre><code class="language-js">let xhr = new XMLHttpRequest()
+xhr.open('PUT', 'http://localhost:3000', true)
+xhr.onreadystatechange = function() {
+  if (xhr.readyState === 4) {
+    if (xhr.status &gt;= 200) {
+      console.log(xhr.response)
+    }
+  }
+}
+xhr.send()
+
+//server.js 简要配置
+let express = require('express')
+let app = express()
+app.use((req, res, next) =&gt; {
+  // 设置源可以访问
+  res.setHeader('Access-Control-Allow-Origin', origin)
+  // 允许携带哪个头访问
+  res.setHeader('Access-Control-Allow-Headers', 'name')
+  // 允许访问的方法
+  res.setHeader('Access-Control-Allow-Methods', 'PUT')
+  // 允许携带cookie
+  res.setHeader('Access-Control-Allow-Credentials', true)
+  // 预检的存活时间
+  res.setHeader('Access-Control-Max-Age', 6)
+})
+</code></pre>
+
+<h4 id="3-document-domain-iframe-跨域">3.document.domain +iframe 跨域</h4>
+
+<p>（仅适用主域相同， 子域不同的跨域应用场景）🌰 a.test.com 和 b.test.com</p>
+
+<h4 id="4-node-中间层">4.node 中间层</h4>
+
+<p>跨域是浏览器的同源策略的安全机制，服务器之间是不存在跨域的。</p>
+
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTly1gd5grr2wmqj31040g2taa.jpg" alt="avatar" /></p>
+
+<h4 id="5-nginx-反向代理">5.nginx 反向代理</h4>
+
+<p>配置一个中转服务器，安装 nginx, 配置 nginx.conf 即可。</p>
+
+<pre><code class="language-js">// proxy服务器
+server {
+    listen       80;
+    server_name  www.domain1.com;
+    location / {
+        proxy_pass   http://www.domain2.com:8080;  #反向代理
+        proxy_cookie_domain www.domain2.com www.domain1.com; #修改cookie里域名
+        index  index.html index.htm;
+    }
+}
+
+</code></pre>
+
+<h3 id="总结以上只列举常用的一些跨域方案-其它方法我们后续介绍">总结以上只列举常用的一些跨域方案，其它方法我们后续介绍。</h3>
+
+                </section>
+            </article>
+
+            
+                <a class="twitter" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fjinjidecoco.github.io%2fposts%2f%25E4%25BB%2580%25E4%25B9%2588%25E6%2598%25AF%25E8%25B7%25A8%25E5%259F%259F%2f - %e8%b7%a8%e5%9f%9f%e5%b8%b8%e7%94%a8%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88 "><span class="icon-twitter"> tweet</span></a>
+
+<a class="facebook" href="#" onclick="
+    window.open(
+      'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+      'facebook-share-dialog',
+      'width=626,height=436');
+    return false;"><span class="icon-facebook-rect"> Share</span>
+</a>
+
+            
+
+            
+                <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'coco'; 
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+            
+
+            
+                <ul id="post-list" class="archive readmore">
+    <h3>Read more</h3>
+
+    
+    
+    
+        <li>
+            <a href="/posts/%E9%80%9A%E4%BF%97%E6%98%93%E6%87%82%E7%9A%84promise/">通俗易懂的Promise<aside class="dates">May 19 2018</aside></a>
+        </li>
+    
+        <li>
+            <a href="/posts/%E8%80%81%E7%94%9F%E5%B8%B8%E8%B0%88%E7%9A%84%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D/">数组去重<aside class="dates">May 13 2018</aside></a>
+        </li>
+    
+        <li>
+            <a href="/posts/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2/">利用Hugo搭建个人博客<aside class="dates">Apr 13 2018</aside></a>
+        </li>
+    
+        <li>
+            <a href="/posts/2018/">你好，2018<aside class="dates">Apr 10 2018</aside></a>
+        </li>
+    
+</ul>
+
+            
+
+            <footer id="footer">
+    
+        <div id="social">
+
+	
+	
+    <a class="symbol" href="https://www.facebook.com/profile.php?id=100023443418984">
+        <i class="fa fa-facebook-square"></i>
+    </a>
+    
+    <a class="symbol" href="https://github.com/jinjidecoco/jinjidecoco.github.io">
+        <i class="fa fa-github-square"></i>
+    </a>
+    
+    <a class="symbol" href="https://twitter.com/jinjidecoco">
+        <i class="fa fa-twitter-square"></i>
+    </a>
+    
+
+
+</div>
+
+    
+    <p class="small">
+    
+       © Copyright 2020 <i class="fa fa-heart" aria-hidden="true"></i> 
+    
+    </p>
+    <p class="small">
+        Powered by <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
+    </p>
+</footer>
+
+        </section>
+
+        <script src="https://jinjidecoco.github.io/js/jquery-3.3.1.min.js"></script>
+<script src="https://jinjidecoco.github.io/js/main.js"></script>
+<script src="https://jinjidecoco.github.io/js/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+  
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'your_google_analytics_id', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+
+
+<script>
+var baiduAnalytics = '药小飒的博客,前端开发,javascript ';
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?" + baiduAnalytics;
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+    </body>
+</html>
