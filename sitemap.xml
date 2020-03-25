@@ -3,11 +3,14 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+<<<<<<< HEAD
     <loc>https://jinjidecoco.github.io/posts/%E4%BB%80%E4%B9%88%E6%98%AF%E8%B7%A8%E5%9F%9F/</loc>
     <lastmod>2019-03-10T19:48:37+08:00</lastmod>
   </url>
   
   <url>
+=======
+>>>>>>> 6427e9d1d89bd754717a3933bcffd88ea0b2328c
     <loc>https://jinjidecoco.github.io/posts/%E9%80%9A%E4%BF%97%E6%98%93%E6%87%82%E7%9A%84promise/</loc>
     <lastmod>2018-05-19T20:46:34+08:00</lastmod>
   </url>
@@ -39,7 +42,11 @@
   
   <url>
     <loc>https://jinjidecoco.github.io/posts/</loc>
+<<<<<<< HEAD
     <lastmod>2019-03-10T19:48:37+08:00</lastmod>
+=======
+    <lastmod>2018-05-19T20:46:34+08:00</lastmod>
+>>>>>>> 6427e9d1d89bd754717a3933bcffd88ea0b2328c
     <priority>0</priority>
   </url>
   
@@ -50,7 +57,11 @@
   
   <url>
     <loc>https://jinjidecoco.github.io/</loc>
+<<<<<<< HEAD
     <lastmod>2019-03-10T19:48:37+08:00</lastmod>
+=======
+    <lastmod>2018-05-19T20:46:34+08:00</lastmod>
+>>>>>>> 6427e9d1d89bd754717a3933bcffd88ea0b2328c
     <priority>0</priority>
   </url>
   

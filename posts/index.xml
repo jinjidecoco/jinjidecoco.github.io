@@ -6,12 +6,17 @@
     <description>Recent content in Posts on 药小飒</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
+<<<<<<< HEAD
     <lastBuildDate>Sun, 10 Mar 2019 19:48:37 +0800</lastBuildDate>
+=======
+    <lastBuildDate>Sat, 19 May 2018 20:46:34 +0800</lastBuildDate>
+>>>>>>> 6427e9d1d89bd754717a3933bcffd88ea0b2328c
     
 	<atom:link href="https://jinjidecoco.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+<<<<<<< HEAD
       <title>跨域常用解决方案</title>
       <link>https://jinjidecoco.github.io/posts/%E4%BB%80%E4%B9%88%E6%98%AF%E8%B7%A8%E5%9F%9F/</link>
       <pubDate>Sun, 10 Mar 2019 19:48:37 +0800</pubDate>
@@ -21,6 +26,8 @@
     </item>
     
     <item>
+=======
+>>>>>>> 6427e9d1d89bd754717a3933bcffd88ea0b2328c
       <title>通俗易懂的Promise</title>
       <link>https://jinjidecoco.github.io/posts/%E9%80%9A%E4%BF%97%E6%98%93%E6%87%82%E7%9A%84promise/</link>
       <pubDate>Sat, 19 May 2018 20:46:34 +0800</pubDate>
