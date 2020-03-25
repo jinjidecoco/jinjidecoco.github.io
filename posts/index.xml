@@ -6,7 +6,7 @@
     <description>Recent content in Posts on 药小飒</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 12 Mar 2019 19:48:37 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 10 Mar 2019 19:48:37 +0800</lastBuildDate>
     
 	<atom:link href="https://jinjidecoco.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>跨域常用解决方案</title>
       <link>https://jinjidecoco.github.io/posts/%E4%BB%80%E4%B9%88%E6%98%AF%E8%B7%A8%E5%9F%9F/</link>
-      <pubDate>Tue, 12 Mar 2019 19:48:37 +0800</pubDate>
+      <pubDate>Sun, 10 Mar 2019 19:48:37 +0800</pubDate>
       
       <guid>https://jinjidecoco.github.io/posts/%E4%BB%80%E4%B9%88%E6%98%AF%E8%B7%A8%E5%9F%9F/</guid>
       <description>什么是跨域？ 同源策略：它是一种约定，即：协议（http 与 https）+域名(www.baidu.com 与 m.taobao.com)+端口号(</description>
